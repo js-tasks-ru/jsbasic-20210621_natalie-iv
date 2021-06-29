@@ -1,15 +1,13 @@
 function factorial(n) {
   let value = n;
-  if (Number.isInteger(n) && n >= 0) {
-    if (n === 0) {
-      return 1;
-    } else {
-      for (let i = 1; i < n; i++) {
-        let step = n - i;
-        value = value * step;
-      }
-      return value;
+  if (n === 0) {
+    return 1;
+  } else if (Number.isInteger(n) && n >= 0) {
+    for (let i = 1; i < n; i++) {
+      let step = n - i;
+      value = value * step;
     }
+    return value;
   } else {
     alert('Значение должно быть неотрицательным и целочисленным');
     return null;
