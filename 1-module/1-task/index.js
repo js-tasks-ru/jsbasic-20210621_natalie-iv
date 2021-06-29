@@ -1,3 +1,20 @@
 function factorial(n) {
-  // ваш код...
+  let value = n;
+  if (n === 0) {
+    return 1;
+  } else if (Number.isInteger(n) && n >= 0) {
+    for (let i = 1; i < n; i++) {
+      let step = n - i;
+      value = value * step;
+    }
+    return value;
+  } else {
+    alert('Значение должно быть неотрицательным и целочисленным');
+    return null;
+  }
 }
+
+factorial(2);
+
+//todo: Встроенный автотест не проверяет на дробные и отрицательные значения.
+//todo: Так как факториал применяется только к целым и неотрицательным числам, я решила учесть это в написании функции.
