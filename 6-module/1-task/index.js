@@ -2,7 +2,7 @@ export default class UserTable {
   constructor(rows) {
     this.rows = rows;
     this.render();
-    this.deleteTableRow();
+    this.addTableDeleteRowListener();
   }
 
   render() {
@@ -35,10 +35,9 @@ export default class UserTable {
   `;
   }
 
-  deleteTableRow () {
+  addTableDeleteRowListener () {
     this.elem.onclick = ({target}) => {
-      let button = target.closest("button");
-      if (button) {
+      if (target.tagName === 'BUTTON') {
         let parentButton = target.parentNode;
         let currentRow = parentButton.parentNode;
         currentRow.remove();

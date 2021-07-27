@@ -1,13 +1,13 @@
 export default class ProductCard {
   constructor(product) {
     this.product = product;
-    this.card = '';
+    this.render();
   }
 
-  get elem() {
-    this.card = document.createElement('div');
-    this.card.classList.add('card');
-    this.card.innerHTML = `
+  render () {
+    this.elem = document.createElement('div');
+    this.elem.classList.add('card');
+    this.elem.innerHTML = `
       <div class="card__top">
         <img src="./../../assets/images/products/${this.product.image}" class="card__image" alt="product">
         <span class="card__price">€${this.product.price.toFixed(2)}</span>
@@ -19,14 +19,13 @@ export default class ProductCard {
         </button>
       </div>
     `;
-    let button = this.card.getElementsByClassName('card__button')[0];
+    let button = this.elem.getElementsByClassName('card__button')[0];
     button.addEventListener('click', () => {
       let event = new CustomEvent("product-add", {
         detail: this.product.id,
         bubbles: true
       });
-      document.body.dispatchEvent(event);
+      this.elem.dispatchEvent(event);
     });
-    return this.card;
   }
 }

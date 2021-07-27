@@ -30,9 +30,9 @@ export default class Carousel {
         name: items[i].name
       });
       carouselInner.append(card);
-      let button = this.elem.getElementsByClassName('carousel__button')[i];
+      let button = card.getElementsByClassName('carousel__button');
       button.addEventListener('click', () => {
-        this.addCard(items[i].id);
+        this.dispatchProductAddEvent(items[i].id);
       });
     }
     this.updateSlider();
@@ -51,17 +51,16 @@ export default class Carousel {
   `;
   }
 
-  addCard(id) {
+  dispatchProductAddEvent(id) {
     let event = new CustomEvent("product-add", {
       detail: id,
       bubbles: true
     });
-    document.body.dispatchEvent(event);
+    document.getElementsByClassName('container').dispatchEvent(event);
   }
 
   updateSlider() {
     let offset = -this.elem.offsetWidth * this.currentSlide;
-    console.log(offset);
     this.elem.querySelector(`.carousel__inner`).style.transform = `translateX(${offset}px)`;
 
     if (this.currentSlide === this.slides.length - 1) {
